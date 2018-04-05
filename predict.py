@@ -115,8 +115,8 @@ model = Model(inputs=[question1,question2], outputs=is_duplicate)
 model.compile(loss='binary_crossentropy', optimizer=OPTIMIZER, metrics=['accuracy'])
 model.load_weights(MODEL_WEIGHTS_FILE)
 temp= model.predict([q1_data, q2_data])
-for i in range(0,T1):
-    if(temp[i]>0.5):
+for i in range(0,T1):   # used np.round([temp]) but it is giving "1.0" like this, so added loop. "1" looks pretty
+     if(temp[i]>0.5):
         temp[i]=1
     else:
         temp[i]=0
