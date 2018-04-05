@@ -1,0 +1,7 @@
+I cannot upload trained weights,embedding matrix and nb_words as they are more than 25 MB
+
+i am uploading a zipped file of them in google drive
+
+here is the link
+
+https://drive.google.com/open?id=1a_w6PPkYXfjU3-ecbqfUG0YOmW9qPLGw
