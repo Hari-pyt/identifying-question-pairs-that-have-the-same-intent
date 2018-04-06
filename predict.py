@@ -44,10 +44,6 @@ with open(QUESTION_PAIRS_FILE, encoding='utf-8') as csvfile:
         question2.append(row['question2'])
 
 print('Question pairs: %d' % len(question1))
-
-
-T1=len(question1)
-
 print(T1)
     # Build tokenized word index
 questions = question1 + question2
@@ -56,21 +52,14 @@ tokenizer.fit_on_texts(questions)
 question1_word_sequences = tokenizer.texts_to_sequences(question1)
 question2_word_sequences = tokenizer.texts_to_sequences(question2)
 word_index = tokenizer.word_index
-
 print("Words in index: %d" % len(word_index))
 
-    # Prepare word embedding matrix
-
-    # Prepare training data tensors
+# Prepare training data tensors
 q1_data = pad_sequences(question1_word_sequences, maxlen=MAX_SEQUENCE_LENGTH)
 q2_data = pad_sequences(question2_word_sequences, maxlen=MAX_SEQUENCE_LENGTH)
 
 print('Shape of question1 data tensor:', q1_data.shape)
 print('Shape of question2 data tensor:', q2_data.shape)
-   
-
-
-
 # Define the model
 question1 = Input(shape=(MAX_SEQUENCE_LENGTH,))
 question2 = Input(shape=(MAX_SEQUENCE_LENGTH,))
@@ -105,13 +94,14 @@ merged = BatchNormalization()(merged)
 merged = Dense(200, activation='relu')(merged)
 merged = Dropout(DROPOUT)(merged)
 merged = BatchNormalization()(merged)
-
 is_duplicate = Dense(1, activation='sigmoid')(merged)
 
 model = Model(inputs=[question1,question2], outputs=is_duplicate)
 model.compile(loss='binary_crossentropy', optimizer=OPTIMIZER, metrics=['accuracy'])
+
 model.load_weights(MODEL_WEIGHTS_FILE)
 temp= model.predict([q1_data, q2_data])
+
 df = pd.DataFrame(temp)
 df.to_csv("output.csv",header=['is_duplicate'])
 
