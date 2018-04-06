@@ -13,9 +13,7 @@ from keras.callbacks import Callback, ModelCheckpoint
 from keras import backend as K
 from sklearn.model_selection import train_test_split
 
-
 # Initialize global variables
-KERAS_DATASETS_DIR = expanduser('~/.keras/datasets/')
 QUESTION_PAIRS_FILE = 'test2.csv'
 WORD_EMBEDDING_MATRIX_FILE = 'word_embedding_matrix.npy'
 NB_WORDS_DATA_FILE = 'nb_words.json'
@@ -31,7 +29,6 @@ DROPOUT = 0.1
 BATCH_SIZE = 32
 OPTIMIZER = 'adam'
 
-
 word_embedding_matrix = np.load(open(WORD_EMBEDDING_MATRIX_FILE, 'rb'))
 with open(NB_WORDS_DATA_FILE, 'r') as f:
     nb_words = json.load(f)['nb_words']
@@ -40,7 +37,7 @@ print("Processing", QUESTION_PAIRS_FILE)
 question1 = []
 question2 = []
    
-with open(KERAS_DATASETS_DIR + QUESTION_PAIRS_FILE, encoding='utf-8') as csvfile:
+with open(QUESTION_PAIRS_FILE, encoding='utf-8') as csvfile:
     reader = csv.DictReader(csvfile, delimiter=',')
     for row in reader:
         question1.append(row['question1'])
@@ -115,13 +112,8 @@ model = Model(inputs=[question1,question2], outputs=is_duplicate)
 model.compile(loss='binary_crossentropy', optimizer=OPTIMIZER, metrics=['accuracy'])
 model.load_weights(MODEL_WEIGHTS_FILE)
 temp= model.predict([q1_data, q2_data])
-for i in range(0,T1):   # used np.round([temp]) but it is giving "1.0" like this, so added loop. "1" looks pretty
-     if(temp[i]>0.5):
-        temp[i]=1
-    else:
-        temp[i]=0
 df = pd.DataFrame(temp)
-df.to_csv("hero1.csv",header=['is_duplicate'])
+df.to_csv("output.csv",header=['is_duplicate'])
 
 
 
