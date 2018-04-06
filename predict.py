@@ -101,7 +101,7 @@ model.load_weights(MODEL_WEIGHTS_FILE)
 temp= model.predict([q1_data, q2_data])
 
 df = pd.DataFrame(temp)
-df.to_csv("output.csv",header=['is_duplicate'])
+df.to_csv("output.csv",header=['probability'])
 
 
 
