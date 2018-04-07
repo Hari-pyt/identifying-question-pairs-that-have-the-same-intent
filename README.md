@@ -1,7 +1,7 @@
 # identifying-question-pairs-that-have-the-same-intent
 TCS ExOP for Artificial Intelligence, (Assessment Task - CaseStudy)
 
-# implementation
+# IMPLEMENTATION
 1.	Place quora_duplicate_questions.csv and glove.840B.300d.txt file in the folder in which we run the program
 
              python main.py
@@ -13,7 +13,7 @@ Maximum validation accuracy and test accuracy will be displayed in command promp
 
 3.	Now we have required files to predict new data, the Predict.py will the the input as csv file and generate a output .csv file with predicted values
 
-# Data set study
+# DATA SET STUDY
 
 1.  We have 404290 question pairs for both training and testing. Among 404290 questions pairs 149263 pairs have same intent (1) and remaining 255027 have different intent (0).
 2.  93% questions have length 23 and 99% of the questions have at most length 31. 
