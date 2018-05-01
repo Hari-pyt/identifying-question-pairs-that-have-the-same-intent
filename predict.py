@@ -42,7 +42,6 @@ with open(QUESTION_PAIRS_FILE, encoding='utf-8') as csvfile:
         question2.append(row['question2'])
 
 print('Question pairs: %d' % len(question1))
-print(T1)
     # Build tokenized word index
 questions = question1 + question2
 tokenizer = Tokenizer(num_words=MAX_NB_WORDS)
