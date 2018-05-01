@@ -11,7 +11,7 @@ Maximum validation accuracy and test accuracy will be displayed in command promp
 
              python predict.py
 
-3.	Now we have required files to predict new data, the Predict.py will the the input as csv file and generate a output .csv file with predicted values
+3.	Now we have required files to predict new data, the Predict.py will take the input as csv file and generate a solution.csv file with predicted values
 
 # DATA SET STUDY
 
