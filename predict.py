@@ -14,10 +14,10 @@ from keras import backend as K
 from sklearn.model_selection import train_test_split
 
 # Initialize global variables
-QUESTION_PAIRS_FILE = 'test2.csv'
+QUESTION_PAIRS_FILE = 'test.csv'
 WORD_EMBEDDING_MATRIX_FILE = 'word_embedding_matrix.npy'
 NB_WORDS_DATA_FILE = 'nb_words.json'
-MAX_NB_WORDS = 200000
+MAX_NB_WORDS = 95596
 MAX_SEQUENCE_LENGTH = 25
 EMBEDDING_DIM = 300
 MODEL_WEIGHTS_FILE = 'question_pairs_weights.h5'
